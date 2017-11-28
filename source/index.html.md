@@ -1,239 +1,141 @@
 ---
-title: API Reference
+title: Octokit
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - repositories
 
 search: true
 ---
 
-# Introduction
+# Octokit
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Octokit – home of the official libraries to build amazing experiences using the [GitHub API](https://developer.github.com/)
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Initialization
+
+All Octokit libraries work against all GitHub versions: [GitHub.com](https://github.com), [GitHub Enterprise](https://enterprise.github.com) and [GitHub Business](https://github.com/business).
+
+Depending on which version you want to work against, you have to set different options
+
+<!-- table generated with https://www.tablesgenerator.com/markdown_tables -->
+| Parameter  | Type   | Default            | Description                  |
+|------------|--------|--------------------|------------------------------|
+| host       | String | `'api.github.com'` | Hostname or IP of GitHub API |
+| pathPrefix | String | `''`               |                              |
+| protocol   | String | `'https:'`         |                              |
+| port       | Number | `443`              |                              |
+
+```javascript
+// node: const Octokit = require('octokit')
+// browser: <script src="https://cdn.github.com/octokit/javascript/octokit-1.2.3.js"></script>
+const github = new Octokit({
+    // optional
+  timeout: 5000,
+  host: 'github.my-GHE-enabled-company.com', // should be api.github.com for GitHub
+  pathPrefix: '/api/v3', // for some GHEs; none for GitHub
+  protocol: 'https',
+  port: 9898,
+  proxy: '<proxyUrl>',
+  ca: 'whatever',
+  headers: {
+    'accept': 'application/vnd.github.something-custom',
+    'cookie': 'something custom',
+    'user-agent': 'something custom'
+  },
+  requestMedia: 'application/vnd.github.something-custom',
+  rejectUnauthorized: false, // default: true
+  family: 6
+})
+```
+
+These arguments are shared across all Octokit libraries. Other options depend on the language you are using.
 
 # Authentication
 
-> To authorize, use this code:
+There are three ways to authenticate through GitHub API v3. Requests that require authentication will return `404 Not Found`, instead of `403 Forbidden`, in some places. This is to prevent the accidental leakage of private repositories to unauthorized users.
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## Basic Authentication
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+$ curl https://api.github.com/user \
+    -u "octocat:secret"
 ```
 
 ```javascript
-const kittn = require('kittn');
+octokit.authenticate({
+  type: 'basic',
+  username: 'octocat',
+  password: 'secret'
+})
 
-let api = kittn.authorize('meowmeowmeow');
+octokit.users.get()
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Authenticate using username and password.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## OAuth2 Token
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+# send as haeder
+$ curl https://api.github.com \
+    -H "Authorization: token 0000000000000000000000000000000000000001"
+# send as a parameter
+$ curl https://api.github.com/user?access_token=OAUTH-TOKEN
 ```
 
 ```javascript
-const kittn = require('kittn');
+octokit.authenticate({
+  type: 'token',
+  token: '0000000000000000000000000000000000000001'
+})
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+octokit.users.get()
 ```
 
-> The above command returns JSON structured like this:
+Read [more about OAuth2](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/). Note that OAuth2 tokens can be [acquired programmatically](https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization), for applications that are not websites.
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## OAuth2 Key/Secret
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+$ curl 'https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy'
 ```
 
-```javascript
-const kittn = require('kittn');
+This should only be used in server to server scenarios. Don't leak your OAuth application's client secret to your users.
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+Read [more about unauthenticated rate limiting](https://developer.github.com/v3/#increasing-the-unauthenticated-rate-limit-for-oauth-applications).
 
-> The above command returns JSON structured like this:
+## Failed login limit
 
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
+Authenticating with invalid credentials will return an `Unauthorized Error`
 
-This endpoint retrieves a specific kitten.
+| Property          | Value                               |
+|-------------------|-------------------------------------|
+| name              | `'Unauthorized'`                    |
+| code              | `401`                               |
+| message           | `'Bad credentials'`                 |
+| documentation_url | `'https://developer.github.com/v3'` |
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+After detecting several requests with invalid credentials within a short period, the API will temporarily reject all authentication attempts for that user (including ones with valid credentials) with a `Forbidden Error`:
 
-### HTTP Request
+| Property          | Value                               |
+|-------------------|-------------------------------------|
+| name              | `'Forbidden'`                       |
+| code              | `404`                               |
+| message           | `'Maximum number of login attempts exceeded. Please try again later.'` |
+| documentation_url | `'https://developer.github.com/v3'` |
 
-`GET http://example.com/kittens/<ID>`
 
-### URL Parameters
+# v3 Rest API
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+[https://developer.github.com/v3/](https://developer.github.com/v3/)
 
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
