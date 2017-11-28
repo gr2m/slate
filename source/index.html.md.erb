@@ -2,14 +2,17 @@
 title: Octokit
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - javascript
+  - shell: cURL
+  - javascript: JS
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - repositories
+  - graphql
+  - oauth-apps
+  - github-apps
 
 search: true
 ---
@@ -35,26 +38,7 @@ Depending on which version you want to work against, you have to set different o
 | port       | Number | `443`              |                              |
 
 ```javascript
-// node: const Octokit = require('octokit')
-// browser: <script src="https://cdn.github.com/octokit/javascript/octokit-1.2.3.js"></script>
-const github = new Octokit({
-    // optional
-  timeout: 5000,
-  host: 'github.my-GHE-enabled-company.com', // should be api.github.com for GitHub
-  pathPrefix: '/api/v3', // for some GHEs; none for GitHub
-  protocol: 'https',
-  port: 9898,
-  proxy: '<proxyUrl>',
-  ca: 'whatever',
-  headers: {
-    'accept': 'application/vnd.github.something-custom',
-    'cookie': 'something custom',
-    'user-agent': 'something custom'
-  },
-  requestMedia: 'application/vnd.github.something-custom',
-  rejectUnauthorized: false, // default: true
-  family: 6
-})
+<%= partial "language-snippets/javascript/initialization.js" %>
 ```
 
 These arguments are shared across all Octokit libraries. Other options depend on the language you are using.
@@ -66,18 +50,11 @@ There are three ways to authenticate through GitHub API v3. Requests that requir
 ## Basic Authentication
 
 ```shell
-$ curl https://api.github.com/user \
-    -u "octocat:secret"
+<%= partial "language-snippets/shell/authentication/basic.sh" %>
 ```
 
 ```javascript
-octokit.authenticate({
-  type: 'basic',
-  username: 'octocat',
-  password: 'secret'
-})
-
-octokit.users.get()
+<%= partial "language-snippets/javascript/authentication/basic.js" %>
 ```
 
 Authenticate using username and password.
