@@ -78,6 +78,8 @@
         $toc.find(tocListSelector).filter(".active").slideDown(150);
         // TODO remove classnames
         document.title = $best.data("title") + " – " + originalTitle;
+        // set location hash
+        history.replaceState('', '', best)
       }
     };
 
