@@ -13,20 +13,32 @@
 
   index.ref('id');
   index.field('title', { boost: 10 });
-  index.field('body');
+  // index.field('body');
   index.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
 
   $(populate);
   $(bind);
 
   function populate() {
+    var section;
     $('h1, h2, h3').each(function() {
       var title = $(this);
+      var titleText
       var body = title.nextUntil('h1, h2, h3');
+      if ($(this).is('h2')) {
+        section = title.text()
+      }
+
+      if ($(this).is('h3')) {
+        titleText = section + ' ' + $(this).text()
+      } else {
+        titleText = title.text()
+      }
+
       index.add({
         id: title.prop('id'),
-        title: title.text(),
-        body: body.text()
+        title: titleText,
+        // body: body.text()
       });
     });
 
