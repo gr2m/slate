@@ -1,0 +1,1 @@
+octokit.authenticate({type:"basic",username:"octocat",password:"secret"}),octokit.users.get();

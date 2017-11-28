@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Octokit</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="javascript">JS</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,280 +220,690 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#octokit" class="toc-h1 toc-link" data-title="Octokit">Octokit</a>
+          </li>
+          <li>
+            <a href="#initialization" class="toc-h1 toc-link" data-title="Initialization">Initialization</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#basic-authentication" class="toc-h2 toc-link" data-title="Basic Authentication">Basic Authentication</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#oauth2-token" class="toc-h2 toc-link" data-title="OAuth2 Token">OAuth2 Token</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#oauth2-key-secret" class="toc-h2 toc-link" data-title="OAuth2 Key/Secret">OAuth2 Key/Secret</a>
+                  </li>
+                  <li>
+                    <a href="#failed-login-limit" class="toc-h2 toc-link" data-title="Failed login limit">Failed login limit</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#v3-rest-api" class="toc-h1 toc-link" data-title="v3 Rest API">v3 Rest API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#repositories" class="toc-h2 toc-link" data-title="Repositories">Repositories</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#list-your-repositories" class="toc-h3 toc-link" data-title="List your repositories">List your repositories</a>
+                          </li>
+                          <li>
+                            <a href="#create-on-your-account" class="toc-h3 toc-link" data-title="Create on your account">Create on your account</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#graphql" class="toc-h1 toc-link" data-title="GraphQL">GraphQL</a>
+          </li>
+          <li>
+            <a href="#oauth-apps" class="toc-h1 toc-link" data-title="OAuth Apps">OAuth Apps</a>
+          </li>
+          <li>
+            <a href="#github-apps" class="toc-h1 toc-link" data-title="GitHub Apps">GitHub Apps</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='octokit'>Octokit</h1>
+<p>Welcome to Octokit – home of the official libraries to build amazing experiences using the <a href="https://developer.github.com/">GitHub API</a></p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1 id='initialization'>Initialization</h1>
+<p>All Octokit libraries work against all GitHub versions: <a href="https://github.com">GitHub.com</a>, <a href="https://enterprise.github.com">GitHub Enterprise</a> and <a href="https://github.com/business">GitHub Business</a>.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Depending on which version you want to work against, you have to set different options</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<!-- table generated with https://www.tablesgenerator.com/markdown_tables -->
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>host</td>
+<td>String</td>
+<td><code>&#39;api.github.com&#39;</code></td>
+<td>Hostname or IP of GitHub API</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>pathPrefix</td>
+<td>String</td>
+<td><code>&#39;&#39;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>String</td>
+<td><code>&#39;https:&#39;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>port</td>
+<td>Number</td>
+<td><code>443</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// node: const Octokit = require('octokit')</span>
+<span class="c1">// browser: &lt;script src="https://cdn.github.com/octokit/javascript/octokit-1.2.3.js"&gt;&lt;/script&gt;</span>
+<span class="kr">const</span> <span class="nx">github</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Octokit</span><span class="p">({</span>
+    <span class="c1">// optional</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+  <span class="na">host</span><span class="p">:</span> <span class="s1">'github.my-GHE-enabled-company.com'</span><span class="p">,</span> <span class="c1">// should be api.github.com for GitHub</span>
+  <span class="na">pathPrefix</span><span class="p">:</span> <span class="s1">'/api/v3'</span><span class="p">,</span> <span class="c1">// for some GHEs; none for GitHub</span>
+  <span class="na">protocol</span><span class="p">:</span> <span class="s1">'https'</span><span class="p">,</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">9898</span><span class="p">,</span>
+  <span class="na">proxy</span><span class="p">:</span> <span class="s1">'&lt;proxyUrl&gt;'</span><span class="p">,</span>
+  <span class="na">ca</span><span class="p">:</span> <span class="s1">'whatever'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'accept'</span><span class="p">:</span> <span class="s1">'application/vnd.github.something-custom'</span><span class="p">,</span>
+    <span class="s1">'cookie'</span><span class="p">:</span> <span class="s1">'something custom'</span><span class="p">,</span>
+    <span class="s1">'user-agent'</span><span class="p">:</span> <span class="s1">'something custom'</span>
+  <span class="p">},</span>
+  <span class="na">requestMedia</span><span class="p">:</span> <span class="s1">'application/vnd.github.something-custom'</span><span class="p">,</span>
+  <span class="na">rejectUnauthorized</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// default: true</span>
+  <span class="na">family</span><span class="p">:</span> <span class="mi">6</span>
+<span class="p">})</span>
+
+</code></pre>
+<p>These arguments are shared across all Octokit libraries. Other options depend on the language you are using.</p>
+<h1 id='authentication'>Authentication</h1>
+<p>There are three ways to authenticate through GitHub API v3. Requests that require authentication will return <code>404 Not Found</code>, instead of <code>403 Forbidden</code>, in some places. This is to prevent the accidental leakage of private repositories to unauthorized users.</p>
+<h2 id='basic-authentication'>Basic Authentication</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.github.com/user <span class="se">\</span>
+    -u <span class="s2">"octocat:secret"</span>
+
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">octokit</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">({</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'basic'</span><span class="p">,</span>
+  <span class="na">username</span><span class="p">:</span> <span class="s1">'octocat'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="s1">'secret'</span>
+<span class="p">})</span>
+
+<span class="nx">octokit</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">get</span><span class="p">()</span>
+
+</code></pre>
+<p>Authenticate using username and password.</p>
+<h2 id='oauth2-token'>OAuth2 Token</h2><pre class="highlight shell tab-shell"><code><span class="c"># send as haeder</span>
+<span class="gp">$ </span>curl https://api.github.com <span class="se">\</span>
+    -H <span class="s2">"Authorization: token 0000000000000000000000000000000000000001"</span>
+<span class="c"># send as a parameter</span>
+<span class="gp">$ </span>curl https://api.github.com/user?access_token<span class="o">=</span>OAUTH-TOKEN
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">octokit</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">({</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'token'</span><span class="p">,</span>
+  <span class="na">token</span><span class="p">:</span> <span class="s1">'0000000000000000000000000000000000000001'</span>
+<span class="p">})</span>
+
+<span class="nx">octokit</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">get</span><span class="p">()</span>
+</code></pre>
+<p>Read <a href="https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/">more about OAuth2</a>. Note that OAuth2 tokens can be <a href="https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization">acquired programmatically</a>, for applications that are not websites.</p>
+<h2 id='oauth2-key-secret'>OAuth2 Key/Secret</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl <span class="s1">'https://api.github.com/users/whatever?client_id=xxxx&amp;client_secret=yyyy'</span>
+</code></pre>
+<p>This should only be used in server to server scenarios. Don&#39;t leak your OAuth application&#39;s client secret to your users.</p>
+
+<p>Read <a href="https://developer.github.com/v3/#increasing-the-unauthenticated-rate-limit-for-oauth-applications">more about unauthenticated rate limiting</a>.</p>
+<h2 id='failed-login-limit'>Failed login limit</h2>
+<p>Authenticating with invalid credentials will return an <code>Unauthorized Error</code></p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code>&#39;Unauthorized&#39;</code></td>
+</tr>
+<tr>
+<td>code</td>
+<td><code>401</code></td>
+</tr>
+<tr>
+<td>message</td>
+<td><code>&#39;Bad credentials&#39;</code></td>
+</tr>
+<tr>
+<td>documentation_url</td>
+<td><code>&#39;https://developer.github.com/v3&#39;</code></td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<p>After detecting several requests with invalid credentials within a short period, the API will temporarily reject all authentication attempts for that user (including ones with valid credentials) with a <code>Forbidden Error</code>:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code>&#39;Forbidden&#39;</code></td>
+</tr>
+<tr>
+<td>code</td>
+<td><code>404</code></td>
+</tr>
+<tr>
+<td>message</td>
+<td><code>&#39;Maximum number of login attempts exceeded. Please try again later.&#39;</code></td>
+</tr>
+<tr>
+<td>documentation_url</td>
+<td><code>&#39;https://developer.github.com/v3&#39;</code></td>
+</tr>
+</tbody></table>
+<h1 id='v3-rest-api'>v3 Rest API</h1>
+<p><a href="https://developer.github.com/v3/">https://developer.github.com/v3/</a></p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h2 id='repositories'>Repositories</h2><h3 id='list-your-repositories'>List your repositories</h3><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl -XGET https://api.github.com/user/repos <span class="se">\</span>
+    -H <span class="s2">"Authorization: token 0000000000000000000000000000000000000001"</span> <span class="se">\</span>
+    -d <span class="nv">visibility</span><span class="o">=</span>all <span class="se">\</span>
+    -d <span class="nv">affiliation</span><span class="o">=</span><span class="s2">"owner,collaborator,organization_member"</span> <span class="se">\</span>
+    -d <span class="nb">type</span><span class="o">=</span>all <span class="se">\</span>
+    -d <span class="nv">sort</span><span class="o">=</span>full_name <span class="se">\</span>
+    -d <span class="nv">direction</span><span class="o">=</span>asc
+
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">"id"</span>: 1296269,
+    <span class="s2">"owner"</span>: <span class="o">{</span>
+      <span class="s2">"login"</span>: <span class="s2">"octocat"</span>,
+      <span class="s2">"id"</span>: 1,
+      <span class="s2">"avatar_url"</span>: <span class="s2">"https://github.com/images/error/octocat_happy.gif"</span>,
+      <span class="s2">"gravatar_id"</span>: <span class="s2">""</span>,
+      <span class="s2">"url"</span>: <span class="s2">"https://api.github.com/users/octocat"</span>,
+      <span class="s2">"html_url"</span>: <span class="s2">"https://github.com/octocat"</span>,
+      <span class="s2">"followers_url"</span>: <span class="s2">"https://api.github.com/users/octocat/followers"</span>,
+      <span class="s2">"following_url"</span>: <span class="s2">"https://api.github.com/users/octocat/following{/other_user}"</span>,
+      <span class="s2">"gists_url"</span>: <span class="s2">"https://api.github.com/users/octocat/gists{/gist_id}"</span>,
+      <span class="s2">"starred_url"</span>: <span class="s2">"https://api.github.com/users/octocat/starred{/owner}{/repo}"</span>,
+      <span class="s2">"subscriptions_url"</span>: <span class="s2">"https://api.github.com/users/octocat/subscriptions"</span>,
+      <span class="s2">"organizations_url"</span>: <span class="s2">"https://api.github.com/users/octocat/orgs"</span>,
+      <span class="s2">"repos_url"</span>: <span class="s2">"https://api.github.com/users/octocat/repos"</span>,
+      <span class="s2">"events_url"</span>: <span class="s2">"https://api.github.com/users/octocat/events{/privacy}"</span>,
+      <span class="s2">"received_events_url"</span>: <span class="s2">"https://api.github.com/users/octocat/received_events"</span>,
+      <span class="s2">"type"</span>: <span class="s2">"User"</span>,
+      <span class="s2">"site_admin"</span>: <span class="nb">false</span>
+    <span class="o">}</span>,
+    <span class="s2">"name"</span>: <span class="s2">"Hello-World"</span>,
+    <span class="s2">"full_name"</span>: <span class="s2">"octocat/Hello-World"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"This your first repo!"</span>,
+    <span class="s2">"private"</span>: <span class="nb">false</span>,
+    <span class="s2">"fork"</span>: <span class="nb">false</span>,
+    <span class="s2">"url"</span>: <span class="s2">"https://api.github.com/repos/octocat/Hello-World"</span>,
+    <span class="s2">"html_url"</span>: <span class="s2">"https://github.com/octocat/Hello-World"</span>,
+    <span class="s2">"archive_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}"</span>,
+    <span class="s2">"assignees_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/assignees{/user}"</span>,
+    <span class="s2">"blobs_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}"</span>,
+    <span class="s2">"branches_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/branches{/branch}"</span>,
+    <span class="s2">"clone_url"</span>: <span class="s2">"https://github.com/octocat/Hello-World.git"</span>,
+    <span class="s2">"collaborators_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}"</span>,
+    <span class="s2">"comments_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/comments{/number}"</span>,
+    <span class="s2">"commits_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/commits{/sha}"</span>,
+    <span class="s2">"compare_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}"</span>,
+    <span class="s2">"contents_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/contents/{+path}"</span>,
+    <span class="s2">"contributors_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/contributors"</span>,
+    <span class="s2">"deployments_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/deployments"</span>,
+    <span class="s2">"downloads_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/downloads"</span>,
+    <span class="s2">"events_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/events"</span>,
+    <span class="s2">"forks_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/forks"</span>,
+    <span class="s2">"git_commits_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/commits{/sha}"</span>,
+    <span class="s2">"git_refs_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/refs{/sha}"</span>,
+    <span class="s2">"git_tags_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/tags{/sha}"</span>,
+    <span class="s2">"git_url"</span>: <span class="s2">"git:github.com/octocat/Hello-World.git"</span>,
+    <span class="s2">"hooks_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/hooks"</span>,
+    <span class="s2">"issue_comment_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/issues/comments{/number}"</span>,
+    <span class="s2">"issue_events_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/issues/events{/number}"</span>,
+    <span class="s2">"issues_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/issues{/number}"</span>,
+    <span class="s2">"keys_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/keys{/key_id}"</span>,
+    <span class="s2">"labels_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/labels{/name}"</span>,
+    <span class="s2">"languages_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/languages"</span>,
+    <span class="s2">"merges_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/merges"</span>,
+    <span class="s2">"milestones_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/milestones{/number}"</span>,
+    <span class="s2">"mirror_url"</span>: <span class="s2">"git:git.example.com/octocat/Hello-World"</span>,
+    <span class="s2">"notifications_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/notifications{?since, all, participating}"</span>,
+    <span class="s2">"pulls_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/pulls{/number}"</span>,
+    <span class="s2">"releases_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/releases{/id}"</span>,
+    <span class="s2">"ssh_url"</span>: <span class="s2">"git@github.com:octocat/Hello-World.git"</span>,
+    <span class="s2">"stargazers_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/stargazers"</span>,
+    <span class="s2">"statuses_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/statuses/{sha}"</span>,
+    <span class="s2">"subscribers_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/subscribers"</span>,
+    <span class="s2">"subscription_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/subscription"</span>,
+    <span class="s2">"svn_url"</span>: <span class="s2">"https://svn.github.com/octocat/Hello-World"</span>,
+    <span class="s2">"tags_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/tags"</span>,
+    <span class="s2">"teams_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/teams"</span>,
+    <span class="s2">"trees_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/trees{/sha}"</span>,
+    <span class="s2">"homepage"</span>: <span class="s2">"https://github.com"</span>,
+    <span class="s2">"language"</span>: null,
+    <span class="s2">"forks_count"</span>: 9,
+    <span class="s2">"stargazers_count"</span>: 80,
+    <span class="s2">"watchers_count"</span>: 80,
+    <span class="s2">"size"</span>: 108,
+    <span class="s2">"default_branch"</span>: <span class="s2">"master"</span>,
+    <span class="s2">"open_issues_count"</span>: 0,
+    <span class="s2">"topics"</span>: <span class="o">[</span>
+      <span class="s2">"octocat"</span>,
+      <span class="s2">"atom"</span>,
+      <span class="s2">"electron"</span>,
+      <span class="s2">"API"</span>
+    <span class="o">]</span>,
+    <span class="s2">"has_issues"</span>: <span class="nb">true</span>,
+    <span class="s2">"has_wiki"</span>: <span class="nb">true</span>,
+    <span class="s2">"has_pages"</span>: <span class="nb">false</span>,
+    <span class="s2">"has_downloads"</span>: <span class="nb">true</span>,
+    <span class="s2">"archived"</span>: <span class="nb">false</span>,
+    <span class="s2">"pushed_at"</span>: <span class="s2">"2011-01-26T19:06:43Z"</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2011-01-26T19:01:12Z"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2011-01-26T19:14:43Z"</span>,
+    <span class="s2">"permissions"</span>: <span class="o">{</span>
+      <span class="s2">"admin"</span>: <span class="nb">false</span>,
+      <span class="s2">"push"</span>: <span class="nb">false</span>,
+      <span class="s2">"pull"</span>: <span class="nb">true</span>
+    <span class="o">}</span>,
+    <span class="s2">"allow_rebase_merge"</span>: <span class="nb">true</span>,
+    <span class="s2">"allow_squash_merge"</span>: <span class="nb">true</span>,
+    <span class="s2">"allow_merge_commit"</span>: <span class="nb">true</span>,
+    <span class="s2">"subscribers_count"</span>: 42,
+    <span class="s2">"network_count"</span>: 0
+  <span class="o">}</span>
+<span class="o">]</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">data</span><span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">octokit</span><span class="p">.</span><span class="nx">repos</span><span class="p">.</span><span class="nx">getAll</span><span class="p">({</span>
+  <span class="na">visibility</span><span class="p">:</span> <span class="s1">'all'</span><span class="p">,</span>
+  <span class="na">affiliation</span><span class="p">:</span> <span class="s1">'owner,collaborator,organization_member'</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'all'</span><span class="p">,</span>
+  <span class="na">sort</span><span class="p">:</span> <span class="s1">'full_name'</span>
+  <span class="na">direction</span><span class="p">:</span> <span class="s1">'asc'</span>
+<span class="p">})</span>
+
+<span class="c1">// example data value without *_url properties</span>
+<span class="c1">// [ { id: 1296269,</span>
+<span class="c1">//     owner:</span>
+<span class="c1">//      { login: 'octocat',</span>
+<span class="c1">//        id: 1,</span>
+<span class="c1">//        gravatar_id: '',</span>
+<span class="c1">//        url: 'https://api.github.com/users/octocat',</span>
+<span class="c1">//        type: 'User',</span>
+<span class="c1">//        site_admin: false },</span>
+<span class="c1">//     name: 'Hello-World',</span>
+<span class="c1">//     full_name: 'octocat/Hello-World',</span>
+<span class="c1">//     description: 'This your first repo!',</span>
+<span class="c1">//     private: false,</span>
+<span class="c1">//     fork: false,</span>
+<span class="c1">//     url: 'https://api.github.com/repos/octocat/Hello-World',</span>
+<span class="c1">//     homepage: 'https://github.com',</span>
+<span class="c1">//     language: null,</span>
+<span class="c1">//     forks_count: 9,</span>
+<span class="c1">//     stargazers_count: 80,</span>
+<span class="c1">//     watchers_count: 80,</span>
+<span class="c1">//     size: 108,</span>
+<span class="c1">//     default_branch: 'master',</span>
+<span class="c1">//     open_issues_count: 0,</span>
+<span class="c1">//     topics: [ 'octocat', 'atom', 'electron', 'API' ],</span>
+<span class="c1">//     has_issues: true,</span>
+<span class="c1">//     has_wiki: true,</span>
+<span class="c1">//     has_pages: false,</span>
+<span class="c1">//     has_downloads: true,</span>
+<span class="c1">//     archived: false,</span>
+<span class="c1">//     pushed_at: '2011-01-26T19:06:43Z',</span>
+<span class="c1">//     created_at: '2011-01-26T19:01:12Z',</span>
+<span class="c1">//     updated_at: '2011-01-26T19:14:43Z',</span>
+<span class="c1">//     permissions: { admin: false, push: false, pull: true },</span>
+<span class="c1">//     allow_rebase_merge: true,</span>
+<span class="c1">//     allow_squash_merge: true,</span>
+<span class="c1">//     allow_merge_commit: true,</span>
+<span class="c1">//     subscribers_count: 42,</span>
+<span class="c1">//     network_count: 0 } ]</span>
+</code></pre>
+<p>List repositories that are accessible to the authenticated user.</p>
+
+<p>This includes repositories owned by the authenticated user, repositories where the authenticated user is a collaborator, and repositories that the authenticated user has access to through an organization membership.</p>
+
+<aside class="notice">
+  <p><strong>Note:</strong> The <code>topics</code> property for repositories on GitHub is currently available for developers to preview. To view the <code>topics</code> property in calls that return repository results, you must enable the <a href="#"><code>mercy</code> preview</a>.
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h4 id='parameters'>Parameters</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>visibility</code></td>
+      <td><code>string</code></td>
+      <td>Can be one of <code>all</code>, <code>public</code>, or <code>private</code>. Default: <code>all</code></td>
+    </tr>
+    <tr>
+      <td><code>affiliation</code></td>
+      <td><code>string</code></td>
+      <td>Comma-separated list of values. Can include:<br>* <code>owner</code>: Repositories that are owned by the authenticated user.<br>* <code>collaborator</code>: Repositories that the user has been added to as a collaborator.<br>* <code>organization_member</code>: Repositories that the user has access to through being a member of an organization. This includes every repository on every team that the user is on.<br><br>Default: <code>owner,collaborator,organization_member</code></td>
+    </tr>
+    <tr>
+      <td><code>type</code></td>
+      <td><code>string</code></td>
+      <td>Can be one of <code>all</code>, <code>owner</code>, <code>public</code>, <code>private</code>, <code>member</code>. Default: <code>all</code><br><br>Will cause a <code>422</code> error if used in the same request as <strong>visibility</strong> or <strong>affiliation</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>sort</code></td>
+      <td><code>string</code></td>
+      <td>Can be one of <code>created</code>, <code>updated</code>, <code>pushed</code>, <code>full_name</code>. Default: <code>full_name</code></td>
+    </tr>
+    <tr>
+      <td><code>direction</code></td>
+      <td><code>string</code></td>
+      <td>Can be one of <code>asc</code> or <code>desc</code>. Default: when using <code>full_name</code>: <code>asc</code>; otherwise <code>desc</code></td>
+    </tr>
+  </tbody>
+</table>
+<h3 id='create-on-your-account'>Create on your account</h3><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl -XPOST https://api.github.com/user/repos <span class="se">\</span>
+    -H <span class="s2">"Authorization: token 0000000000000000000000000000000000000001"</span> <span class="se">\</span>
+    <span class="c"># optional \</span>
+    -d <span class="nv">name</span><span class="o">=</span><span class="s2">"Hello-World"</span> <span class="se">\</span>
+    -d <span class="nv">description</span><span class="o">=</span><span class="s2">"My first repo created with Octokit"</span> <span class="se">\</span>
+    -d <span class="nv">homepage</span><span class="o">=</span><span class="s2">"https://github.com"</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="c"># example response</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 1296269,
+  <span class="s2">"owner"</span>: <span class="o">{</span>
+    <span class="s2">"login"</span>: <span class="s2">"octocat"</span>,
+    <span class="s2">"id"</span>: 1,
+    <span class="s2">"avatar_url"</span>: <span class="s2">"https://github.com/images/error/octocat_happy.gif"</span>,
+    <span class="s2">"gravatar_id"</span>: <span class="s2">""</span>,
+    <span class="s2">"url"</span>: <span class="s2">"https://api.github.com/users/octocat"</span>,
+    <span class="s2">"html_url"</span>: <span class="s2">"https://github.com/octocat"</span>,
+    <span class="s2">"followers_url"</span>: <span class="s2">"https://api.github.com/users/octocat/followers"</span>,
+    <span class="s2">"following_url"</span>: <span class="s2">"https://api.github.com/users/octocat/following{/other_user}"</span>,
+    <span class="s2">"gists_url"</span>: <span class="s2">"https://api.github.com/users/octocat/gists{/gist_id}"</span>,
+    <span class="s2">"starred_url"</span>: <span class="s2">"https://api.github.com/users/octocat/starred{/owner}{/repo}"</span>,
+    <span class="s2">"subscriptions_url"</span>: <span class="s2">"https://api.github.com/users/octocat/subscriptions"</span>,
+    <span class="s2">"organizations_url"</span>: <span class="s2">"https://api.github.com/users/octocat/orgs"</span>,
+    <span class="s2">"repos_url"</span>: <span class="s2">"https://api.github.com/users/octocat/repos"</span>,
+    <span class="s2">"events_url"</span>: <span class="s2">"https://api.github.com/users/octocat/events{/privacy}"</span>,
+    <span class="s2">"received_events_url"</span>: <span class="s2">"https://api.github.com/users/octocat/received_events"</span>,
+    <span class="s2">"type"</span>: <span class="s2">"User"</span>,
+    <span class="s2">"site_admin"</span>: <span class="nb">false</span>
+  <span class="o">}</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Hello-World"</span>,
+  <span class="s2">"full_name"</span>: <span class="s2">"octocat/Hello-World"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"This your first repo!"</span>,
+  <span class="s2">"private"</span>: <span class="nb">false</span>,
+  <span class="s2">"fork"</span>: <span class="nb">false</span>,
+  <span class="s2">"url"</span>: <span class="s2">"https://api.github.com/repos/octocat/Hello-World"</span>,
+  <span class="s2">"html_url"</span>: <span class="s2">"https://github.com/octocat/Hello-World"</span>,
+  <span class="s2">"archive_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}"</span>,
+  <span class="s2">"assignees_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/assignees{/user}"</span>,
+  <span class="s2">"blobs_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}"</span>,
+  <span class="s2">"branches_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/branches{/branch}"</span>,
+  <span class="s2">"clone_url"</span>: <span class="s2">"https://github.com/octocat/Hello-World.git"</span>,
+  <span class="s2">"collaborators_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}"</span>,
+  <span class="s2">"comments_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/comments{/number}"</span>,
+  <span class="s2">"commits_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/commits{/sha}"</span>,
+  <span class="s2">"compare_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}"</span>,
+  <span class="s2">"contents_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/contents/{+path}"</span>,
+  <span class="s2">"contributors_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/contributors"</span>,
+  <span class="s2">"deployments_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/deployments"</span>,
+  <span class="s2">"downloads_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/downloads"</span>,
+  <span class="s2">"events_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/events"</span>,
+  <span class="s2">"forks_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/forks"</span>,
+  <span class="s2">"git_commits_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/commits{/sha}"</span>,
+  <span class="s2">"git_refs_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/refs{/sha}"</span>,
+  <span class="s2">"git_tags_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/tags{/sha}"</span>,
+  <span class="s2">"git_url"</span>: <span class="s2">"git:github.com/octocat/Hello-World.git"</span>,
+  <span class="s2">"hooks_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/hooks"</span>,
+  <span class="s2">"issue_comment_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/issues/comments{/number}"</span>,
+  <span class="s2">"issue_events_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/issues/events{/number}"</span>,
+  <span class="s2">"issues_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/issues{/number}"</span>,
+  <span class="s2">"keys_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/keys{/key_id}"</span>,
+  <span class="s2">"labels_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/labels{/name}"</span>,
+  <span class="s2">"languages_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/languages"</span>,
+  <span class="s2">"merges_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/merges"</span>,
+  <span class="s2">"milestones_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/milestones{/number}"</span>,
+  <span class="s2">"mirror_url"</span>: <span class="s2">"git:git.example.com/octocat/Hello-World"</span>,
+  <span class="s2">"notifications_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/notifications{?since, all, participating}"</span>,
+  <span class="s2">"pulls_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/pulls{/number}"</span>,
+  <span class="s2">"releases_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/releases{/id}"</span>,
+  <span class="s2">"ssh_url"</span>: <span class="s2">"git@github.com:octocat/Hello-World.git"</span>,
+  <span class="s2">"stargazers_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/stargazers"</span>,
+  <span class="s2">"statuses_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/statuses/{sha}"</span>,
+  <span class="s2">"subscribers_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/subscribers"</span>,
+  <span class="s2">"subscription_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/subscription"</span>,
+  <span class="s2">"svn_url"</span>: <span class="s2">"https://svn.github.com/octocat/Hello-World"</span>,
+  <span class="s2">"tags_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/tags"</span>,
+  <span class="s2">"teams_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/teams"</span>,
+  <span class="s2">"trees_url"</span>: <span class="s2">"http://api.github.com/repos/octocat/Hello-World/git/trees{/sha}"</span>,
+  <span class="s2">"homepage"</span>: <span class="s2">"https://github.com"</span>,
+  <span class="s2">"language"</span>: null,
+  <span class="s2">"forks_count"</span>: 9,
+  <span class="s2">"stargazers_count"</span>: 80,
+  <span class="s2">"watchers_count"</span>: 80,
+  <span class="s2">"size"</span>: 108,
+  <span class="s2">"default_branch"</span>: <span class="s2">"master"</span>,
+  <span class="s2">"open_issues_count"</span>: 0,
+  <span class="s2">"topics"</span>: <span class="o">[</span>
+    <span class="s2">"octocat"</span>,
+    <span class="s2">"atom"</span>,
+    <span class="s2">"electron"</span>,
+    <span class="s2">"API"</span>
+  <span class="o">]</span>,
+  <span class="s2">"has_issues"</span>: <span class="nb">true</span>,
+  <span class="s2">"has_wiki"</span>: <span class="nb">true</span>,
+  <span class="s2">"has_pages"</span>: <span class="nb">false</span>,
+  <span class="s2">"has_downloads"</span>: <span class="nb">true</span>,
+  <span class="s2">"archived"</span>: <span class="nb">false</span>,
+  <span class="s2">"pushed_at"</span>: <span class="s2">"2011-01-26T19:06:43Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2011-01-26T19:01:12Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2011-01-26T19:14:43Z"</span>,
+  <span class="s2">"permissions"</span>: <span class="o">{</span>
+    <span class="s2">"admin"</span>: <span class="nb">false</span>,
+    <span class="s2">"push"</span>: <span class="nb">false</span>,
+    <span class="s2">"pull"</span>: <span class="nb">true</span>
+  <span class="o">}</span>,
+  <span class="s2">"allow_rebase_merge"</span>: <span class="nb">true</span>,
+  <span class="s2">"allow_squash_merge"</span>: <span class="nb">true</span>,
+  <span class="s2">"allow_merge_commit"</span>: <span class="nb">true</span>,
+  <span class="s2">"subscribers_count"</span>: 42,
+  <span class="s2">"network_count"</span>: 0,
+  <span class="s2">"has_projects"</span>: <span class="nb">true</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">data</span><span class="p">}</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">octokit</span><span class="p">.</span><span class="nx">repos</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'Hello-World'</span><span class="p">,</span>
+  <span class="c1">// optional</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'My first repo created with Octokit'</span><span class="p">,</span>
+  <span class="na">homepage</span><span class="p">:</span> <span class="s1">'https://github.com'</span>
+<span class="p">})</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="c1">// exmaple data response without *_url properties</span>
+<span class="c1">// { id: 1296269,</span>
+<span class="c1">//   owner:</span>
+<span class="c1">//    { login: 'octocat',</span>
+<span class="c1">//      id: 1,</span>
+<span class="c1">//      gravatar_id: '',</span>
+<span class="c1">//      url: 'https://api.github.com/users/octocat',</span>
+<span class="c1">//      type: 'User',</span>
+<span class="c1">//      site_admin: false },</span>
+<span class="c1">//   name: 'Hello-World',</span>
+<span class="c1">//   full_name: 'octocat/Hello-World',</span>
+<span class="c1">//   description: 'This your first repo!',</span>
+<span class="c1">//   private: false,</span>
+<span class="c1">//   fork: false,</span>
+<span class="c1">//   url: 'https://api.github.com/repos/octocat/Hello-World',</span>
+<span class="c1">//   homepage: 'https://github.com',</span>
+<span class="c1">//   language: null,</span>
+<span class="c1">//   forks_count: 9,</span>
+<span class="c1">//   stargazers_count: 80,</span>
+<span class="c1">//   watchers_count: 80,</span>
+<span class="c1">//   size: 108,</span>
+<span class="c1">//   default_branch: 'master',</span>
+<span class="c1">//   open_issues_count: 0,</span>
+<span class="c1">//   topics: [ 'octocat', 'atom', 'electron', 'API' ],</span>
+<span class="c1">//   has_issues: true,</span>
+<span class="c1">//   has_wiki: true,</span>
+<span class="c1">//   has_pages: false,</span>
+<span class="c1">//   has_downloads: true,</span>
+<span class="c1">//   archived: false,</span>
+<span class="c1">//   pushed_at: '2011-01-26T19:06:43Z',</span>
+<span class="c1">//   created_at: '2011-01-26T19:01:12Z',</span>
+<span class="c1">//   updated_at: '2011-01-26T19:14:43Z',</span>
+<span class="c1">//   permissions: { admin: false, push: false, pull: true },</span>
+<span class="c1">//   allow_rebase_merge: true,</span>
+<span class="c1">//   allow_squash_merge: true,</span>
+<span class="c1">//   allow_merge_commit: true,</span>
+<span class="c1">//   subscribers_count: 42,</span>
+<span class="c1">//   network_count: 0,</span>
+<span class="c1">//   has_projects: true }</span>
 </code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>Create a new repository for the authenticated user.</p>
+<h4 id='oauth-scope-requirements'>OAuth scope requirements</h4>
+<p>When using OAuth, authorizations must include:</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ul>
+<li><code>public_repo</code> scope or <code>repo</code> scope to create a public repository</li>
+<li><code>repo</code> scope to create a private repository</li>
+</ul>
+<h4 id='parameters-2'>Parameters</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>name</code></td>
+            <td><code>string</code></td>
+            <td>
+                <strong>Required</strong>. The name of the repository.</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td><code>string</code></td>
+            <td>A short description of the repository.</td>
+        </tr>
+        <tr>
+            <td><code>homepage</code></td>
+            <td><code>string</code></td>
+            <td>A URL with more information about the repository.</td>
+        </tr>
+        <tr>
+            <td><code>private</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to create a private repository or <code>false</code> to create a public one. Creating private repositories requires a paid GitHub account. Default: <code>false</code>.</td>
+        </tr>
+        <tr>
+            <td><code>has_issues</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to enable issues for this repository or <code>false</code> to disable them. Default: <code>true</code>.</td>
+        </tr>
+        <tr>
+            <td><code>has_projects</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to enable projects for this repository or <code>false</code> to disable them. Default: <code>true</code>. <b>Note:</b> If you're creating a repository in an organization that has disabled repository projects, the default is <code>false</code>, and if you pass <code>true</code>, the API returns an error.</td>
+        </tr>
+        <tr>
+            <td><code>has_wiki</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to enable the wiki for this repository or <code>false</code> to disable it. Default: <code>true</code>.</td>
+        </tr>
+        <tr>
+            <td><code>team_id</code></td>
+            <td><code>integer</code></td>
+            <td>The id of the team that will be granted access to this repository. This is only valid when creating a repository in an organization.</td>
+        </tr>
+        <tr>
+            <td><code>auto_init</code></td>
+            <td><code>boolean</code></td>
+            <td>Pass <code>true</code> to create an initial commit with empty README. Default: <code>false</code>.</td>
+        </tr>
+        <tr>
+            <td><code>gitignore_template</code></td>
+            <td><code>string</code></td>
+            <td>Desired language or platform <a href="https://github.com/github/gitignore">.gitignore template</a> to apply. Use the name of the template without the extension. For example, "Haskell".</td>
+        </tr>
+        <tr>
+            <td><code>license_template</code></td>
+            <td><code>string</code></td>
+            <td>Desired <a href="https://github.com/github/choosealicense.com">LICENSE template</a> to apply. Use the <a href="https://github.com/github/choosealicense.com/tree/gh-pages/_licenses">name of the template</a> without the extension. For example, "mit" or "mozilla".</td>
+        </tr>
+        <tr>
+            <td><code>allow_squash_merge</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to allow squash-merging pull requests, or <code>false</code> to prevent squash-merging. Default: <code>true</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>allow_merge_commit</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to allow merging pull requests with a merge commit, or <code>false</code> to prevent merging pull requests with merge commits. Default: <code>true</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>allow_rebase_merge</code></td>
+            <td><code>boolean</code></td>
+            <td>Either <code>true</code> to allow rebase-merging pull requests, or <code>false</code> to prevent rebase-merging. Default: <code>true</code>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h1 id='graphql'>GraphQL</h1>
+<p>To be shrugged</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1 id='oauth-apps'>OAuth Apps</h1>
+<p>To be shrugged</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1 id='github-apps'>GitHub Apps</h1>
+<p>To be shrugged</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="javascript">JS</a>
           </div>
       </div>
     </div>

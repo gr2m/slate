@@ -1,0 +1,1 @@
+const github=new Octokit({timeout:5e3,host:"github.my-GHE-enabled-company.com",pathPrefix:"/api/v3",protocol:"https",port:9898,proxy:"<proxyUrl>",ca:"whatever",headers:{accept:"application/vnd.github.something-custom",cookie:"something custom","user-agent":"something custom"},requestMedia:"application/vnd.github.something-custom",rejectUnauthorized:!1,family:6});
