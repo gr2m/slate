@@ -1,3 +1,9 @@
+# REST
+
+[https://developer.github.com/v3/](https://developer.github.com/v3/)
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ## Repositories
 
 ### List your repositories
@@ -10,7 +16,21 @@ $ curl -XGET https://api.github.com/user/repos \
     -d type=all \
     -d sort=full_name \
     -d direction=asc
+```
 
+```javascript
+const {data} = await octokit.repos.getAll({
+  visibility: 'all',
+  affiliation: 'owner,collaborator,organization_member',
+  type: 'all',
+  sort: 'full_name'
+  direction: 'asc'
+})
+```
+
+> Example Response
+
+```json
 [
   {
     "id": 1296269,
@@ -117,55 +137,6 @@ $ curl -XGET https://api.github.com/user/repos \
 ]
 ```
 
-```javascript
-const {data} = await octokit.repos.getAll({
-  visibility: 'all',
-  affiliation: 'owner,collaborator,organization_member',
-  type: 'all',
-  sort: 'full_name'
-  direction: 'asc'
-})
-
-// example data value without *_url properties
-// [ { id: 1296269,
-//     owner:
-//      { login: 'octocat',
-//        id: 1,
-//        gravatar_id: '',
-//        url: 'https://api.github.com/users/octocat',
-//        type: 'User',
-//        site_admin: false },
-//     name: 'Hello-World',
-//     full_name: 'octocat/Hello-World',
-//     description: 'This your first repo!',
-//     private: false,
-//     fork: false,
-//     url: 'https://api.github.com/repos/octocat/Hello-World',
-//     homepage: 'https://github.com',
-//     language: null,
-//     forks_count: 9,
-//     stargazers_count: 80,
-//     watchers_count: 80,
-//     size: 108,
-//     default_branch: 'master',
-//     open_issues_count: 0,
-//     topics: [ 'octocat', 'atom', 'electron', 'API' ],
-//     has_issues: true,
-//     has_wiki: true,
-//     has_pages: false,
-//     has_downloads: true,
-//     archived: false,
-//     pushed_at: '2011-01-26T19:06:43Z',
-//     created_at: '2011-01-26T19:01:12Z',
-//     updated_at: '2011-01-26T19:14:43Z',
-//     permissions: { admin: false, push: false, pull: true },
-//     allow_rebase_merge: true,
-//     allow_squash_merge: true,
-//     allow_merge_commit: true,
-//     subscribers_count: 42,
-//     network_count: 0 } ]
-```
-
 List repositories that are accessible to the authenticated user.
 
 This includes repositories owned by the authenticated user, repositories where the authenticated user is a collaborator, and repositories that the authenticated user has access to through an organization membership.
@@ -222,8 +193,20 @@ $ curl -XPOST https://api.github.com/user/repos \
     -d name="Hello-World" \
     -d description="My first repo created with Octokit" \
     -d homepage="https://github.com"
+```
 
-# example response
+```javascript
+const {data} = await octokit.repos.create({
+  name: 'Hello-World',
+  // optional
+  description: 'My first repo created with Octokit',
+  homepage: 'https://github.com'
+})
+```
+
+> Example response
+
+```json
 {
   "id": 1296269,
   "owner": {
@@ -327,55 +310,6 @@ $ curl -XPOST https://api.github.com/user/repos \
   "network_count": 0,
   "has_projects": true
 }
-```
-
-```javascript
-const {data} = await octokit.repos.create({
-  name: 'Hello-World',
-  // optional
-  description: 'My first repo created with Octokit',
-  homepage: 'https://github.com'
-})
-
-// exmaple data response without *_url properties
-// { id: 1296269,
-//   owner:
-//    { login: 'octocat',
-//      id: 1,
-//      gravatar_id: '',
-//      url: 'https://api.github.com/users/octocat',
-//      type: 'User',
-//      site_admin: false },
-//   name: 'Hello-World',
-//   full_name: 'octocat/Hello-World',
-//   description: 'This your first repo!',
-//   private: false,
-//   fork: false,
-//   url: 'https://api.github.com/repos/octocat/Hello-World',
-//   homepage: 'https://github.com',
-//   language: null,
-//   forks_count: 9,
-//   stargazers_count: 80,
-//   watchers_count: 80,
-//   size: 108,
-//   default_branch: 'master',
-//   open_issues_count: 0,
-//   topics: [ 'octocat', 'atom', 'electron', 'API' ],
-//   has_issues: true,
-//   has_wiki: true,
-//   has_pages: false,
-//   has_downloads: true,
-//   archived: false,
-//   pushed_at: '2011-01-26T19:06:43Z',
-//   created_at: '2011-01-26T19:01:12Z',
-//   updated_at: '2011-01-26T19:14:43Z',
-//   permissions: { admin: false, push: false, pull: true },
-//   allow_rebase_merge: true,
-//   allow_squash_merge: true,
-//   allow_merge_commit: true,
-//   subscribers_count: 42,
-//   network_count: 0,
-//   has_projects: true }
 ```
 
 Create a new repository for the authenticated user.

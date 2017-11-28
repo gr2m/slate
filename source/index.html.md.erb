@@ -9,8 +9,9 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - repositories
+  - rest
   - graphql
+  - webhooks
   - oauth-apps
   - github-apps
 
@@ -25,6 +26,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 # Initialization
 
+```javascript
+<%= partial "language-snippets/javascript/initialization.js" %>
+```
+
 All Octokit libraries work against all GitHub versions: [GitHub.com](https://github.com), [GitHub Enterprise](https://enterprise.github.com) and [GitHub Business](https://github.com/business).
 
 Depending on which version you want to work against, you have to set different options
@@ -36,10 +41,6 @@ Depending on which version you want to work against, you have to set different o
 | pathPrefix | String | `''`               |                              |
 | protocol   | String | `'https:'`         |                              |
 | port       | Number | `443`              |                              |
-
-```javascript
-<%= partial "language-snippets/javascript/initialization.js" %>
-```
 
 These arguments are shared across all Octokit libraries. Other options depend on the language you are using.
 
@@ -109,10 +110,3 @@ After detecting several requests with invalid credentials within a short period,
 | code              | `404`                               |
 | message           | `'Maximum number of login attempts exceeded. Please try again later.'` |
 | documentation_url | `'https://developer.github.com/v3'` |
-
-
-# v3 Rest API
-
-[https://developer.github.com/v3/](https://developer.github.com/v3/)
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
